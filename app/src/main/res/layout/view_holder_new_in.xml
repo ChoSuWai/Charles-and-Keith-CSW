@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_item_picture"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_marginEnd="@dimen/margin_xxlarge"
+        android:layout_marginStart="@dimen/margin_xxlarge"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_blackshoe" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/iv_item_picture"
+        android:layout_alignTop="@id/iv_item_picture"
+        android:layout_marginEnd="@dimen/margin_xxlarge"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:background="@color/primary"
+        android:paddingBottom="@dimen/margin_medium"
+        android:paddingLeft="@dimen/margin_medium_2"
+        android:paddingRight="@dimen/margin_medium_2"
+        android:paddingTop="@dimen/margin_medium"
+        android:text=" NEW "
+        android:textColor="@color/primary_text" />
+
+    <TextView
+        android:id="@+id/tv_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_item_picture"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_medium_2"
+        android:text="POINTED FLAT MULES"
+        android:textColor="@color/primary_text" />
+
+</RelativeLayout>
