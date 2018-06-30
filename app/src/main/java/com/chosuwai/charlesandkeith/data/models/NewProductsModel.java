@@ -33,16 +33,21 @@ public class NewProductsModel {
         return objInstance;
     }
 
+
     public void loadNewProductsList(){
         mDataAgent.loadNewProductsList(1, DUMMY_ACCESS_TOKEN);
     }
 
+    public NewProductsVO getItemsById(String itemId){
+        return mNewProductsMap.get(itemId);
+    }
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onSuccessGetNewProducts(SuccessGetNewProductsEvent event){
-        for (NewProductsVO newProducts : event.getNewProductsList()) {
-            mNewProductsMap.put(newProducts.getProductId(), newProducts);
+        for (NewProductsVO items : event.getNewProductsList()) {
+            mNewProductsMap.put(items.getProductId(), items);
         }
     }
+
 
 }

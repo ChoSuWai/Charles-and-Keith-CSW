@@ -1,13 +1,11 @@
 package com.chosuwai.charlesandkeith.viewholders;
 
-import android.content.ClipData;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.chosuwai.charlesandkeith.R;
 import com.chosuwai.charlesandkeith.data.vos.NewProductsVO;
 import com.chosuwai.charlesandkeith.delegates.ItemsDelegate;
@@ -18,7 +16,7 @@ import butterknife.ButterKnife;
 public class NewInViewHolder extends RecyclerView.ViewHolder {
 
     private ItemsDelegate mItemDelegate;
-    private NewProductsVO mProducts;
+    private NewProductsVO item;
 
     @BindView(R.id.iv_item_picture)
     ImageView itemPicture;
@@ -34,18 +32,18 @@ public class NewInViewHolder extends RecyclerView.ViewHolder {
        itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               mItemDelegate.onTapItem();
+               mItemDelegate.onTapItem(item);
            }
        });
         }
 
         public void setNewProductsData(NewProductsVO newProducts){
-        mProducts=newProducts;
+        item =newProducts;
 
         itemName.setText(newProducts.getProductTitle());
 
             Glide.with(itemPicture.getContext())
-                    .load(mProducts.getProductImage())
+                    .load(item.getProductImage())
                     .into(itemPicture);
         }
     }

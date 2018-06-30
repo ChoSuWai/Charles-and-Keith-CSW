@@ -52,6 +52,7 @@ public class RetrofitDataAgentImpl implements NewProductsDataAgent {
             @Override
             public void onResponse(Call<GetNewProductsResponse> call, Response<GetNewProductsResponse> response) {
                 GetNewProductsResponse newProductsResponse = response.body();
+
                 if (newProductsResponse != null && newProductsResponse.isResponseOk()) {
                     SuccessGetNewProductsEvent event = new SuccessGetNewProductsEvent(newProductsResponse.getNewProducts());
                     EventBus.getDefault().post(event);

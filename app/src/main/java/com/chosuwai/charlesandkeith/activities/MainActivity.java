@@ -9,6 +9,7 @@ import android.util.Log;
 import com.chosuwai.charlesandkeith.R;
 import com.chosuwai.charlesandkeith.adapters.NewInAdapter;
 import com.chosuwai.charlesandkeith.data.models.NewProductsModel;
+import com.chosuwai.charlesandkeith.data.vos.NewProductsVO;
 import com.chosuwai.charlesandkeith.delegates.ItemsDelegate;
 import com.chosuwai.charlesandkeith.events.SuccessGetNewProductsEvent;
 
@@ -30,8 +31,8 @@ public class MainActivity extends BaseActivity
         ButterKnife.bind(this,this);
 
         RecyclerView rvNewIn=findViewById(R.id.rv_items);
-        NewInAdapter newInAdapter=new NewInAdapter(this);
-        rvNewIn.setAdapter(newInAdapter);
+        mNewInAdapter=new NewInAdapter(this);
+        rvNewIn.setAdapter(mNewInAdapter);
         rvNewIn.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false));
 
@@ -56,10 +57,12 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
-    public void onTapItem() {
+    public void onTapItem(NewProductsVO item) {
         Intent intent=new Intent(getApplicationContext(), NewInDetailsActivity.class);
+        intent.putExtra("newProductsId", item.getProductId());
         startActivity(intent);
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSuccessGetNewProducts(SuccessGetNewProductsEvent event){
