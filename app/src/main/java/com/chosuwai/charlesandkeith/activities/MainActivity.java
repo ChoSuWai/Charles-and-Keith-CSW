@@ -2,9 +2,12 @@ package com.chosuwai.charlesandkeith.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.chosuwai.charlesandkeith.R;
 import com.chosuwai.charlesandkeith.adapters.NewInAdapter;
@@ -30,11 +33,28 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this,this);
 
-        RecyclerView rvNewIn=findViewById(R.id.rv_items);
+        final RecyclerView rvNewIn=findViewById(R.id.rv_items);
         mNewInAdapter=new NewInAdapter(this);
         rvNewIn.setAdapter(mNewInAdapter);
         rvNewIn.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false));
+
+        ImageView ivOneCol=findViewById(R.id.btn_one_col);
+        ivOneCol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvNewIn.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+                        LinearLayoutManager.VERTICAL, false));
+            }
+        });
+
+        ImageView ivTwoCol=findViewById(R.id.btn_two_col);
+        ivOneCol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rvNewIn.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+            }
+        });
 
         NewProductsModel.getObjInstance().loadNewProductsList();
 

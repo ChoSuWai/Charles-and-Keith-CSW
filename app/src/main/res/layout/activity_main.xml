@@ -50,7 +50,7 @@
                 android:layout_below="@id/btn_menu"
                 android:layout_marginStart="@dimen/margin_xlarge"
                 android:layout_toRightOf="@id/btn_one_col"
-                android:src="@drawable/ic_crop_square_black_24dp" />
+                android:src="@drawable/ic_filter_none_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
