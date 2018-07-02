@@ -21,43 +21,58 @@ import butterknife.ButterKnife;
 public class NewInDetailsActivity extends BaseActivity
                         implements ItemsDelegate{
 
+    private NewInDetailsAdapter newInDetailsAdapter;
+    //TextView tvItemName=findViewById(R.id.tv_item_name);
+    //ImageView ivItemPicture=findViewById(R.id.iv_item_picture);
+/*
+    @BindView(R.id.rv_details_items)
+    RecyclerView rvDetailsItems;
+
     @BindView(R.id.iv_item_picture)
     ImageView ivItemPicture;
 
+    public NewInDetailsActivity() {
+       // this.newInDetailsAdapter = newInDetailsAdapter;
+        ButterKnife.bind(this,this);
+    }
+
     @BindView(R.id.tv_item_name)
-    TextView tvItemName;
+    TextView tvItemName;*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_in_details);
-        ButterKnife.bind(this,this);
+        //ButterKnife.bind(this, this);
 
+        newInDetailsAdapter=new NewInDetailsAdapter(this);
 
-        String itemId = getIntent().getStringExtra("itemId");
-        Log.d("NewIn Details Activity", "itemId: " + itemId);
-
-        NewProductsVO items= NewProductsModel.getObjInstance().getItemsById(itemId);
-        bindData(items);
-
-        /*RecyclerView rvDetailsItems=findViewById(R.id.rv_details_items);
-        NewInDetailsAdapter newInDetailsAdapter=new NewInDetailsAdapter();
+        RecyclerView rvDetailsItems=findViewById(R.id.rv_details_items);
         rvDetailsItems.setAdapter(newInDetailsAdapter);
         rvDetailsItems.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
-                LinearLayoutManager.VERTICAL, false));*/
+                LinearLayoutManager.VERTICAL, false));
+
+        //String newProductsId = getIntent().getStringExtra("newProductsId");
+        //Log.d("NewIn Details Activity", "newProductsId: " + newProductsId);
+
+        //NewProductsVO items= NewProductsModel.getObjInstance().getItemsById(newProductsId);
+        // bindData(items, newInDetailsAdapter);
+
     }
 
 
-
-    private void bindData(NewProductsVO items){
+/*
+    private void bindData(NewProductsVO items, NewInDetailsAdapter newInDetailsAdapter){
         tvItemName.setText(items.getProductTitle());
 
         Glide.with(ivItemPicture.getContext())
                 .load(items.getProductImage())
                 .into(ivItemPicture);
 
-    }
+        newInDetailsAdapter.setItemsList(NewProductsModel.getObjInstance().getItemsList());
 
+    }
+*/
 
     @Override
     public void onTapItem(NewProductsVO item) {

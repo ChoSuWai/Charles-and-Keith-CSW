@@ -42,9 +42,15 @@ public class NewInViewHolder extends RecyclerView.ViewHolder {
 
         itemName.setText(newProducts.getProductTitle());
 
-            Glide.with(itemPicture.getContext())
-                    .load(item.getProductImage())
-                    .into(itemPicture);
+            if (!item.getProductImage().isEmpty()) {
+                itemPicture.setVisibility(View.VISIBLE);
+                Glide.with(itemPicture.getContext())
+                        .load(item.getProductImage())
+                        .into(itemPicture);
+            } else {
+                itemPicture.setVisibility(View.GONE);
+            }
+
         }
     }
 

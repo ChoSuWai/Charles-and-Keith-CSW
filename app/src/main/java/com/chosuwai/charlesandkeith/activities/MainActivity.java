@@ -20,6 +20,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity
@@ -27,19 +28,29 @@ public class MainActivity extends BaseActivity
 
     private NewInAdapter mNewInAdapter;
 
+    @BindView(R.id.rv_items)
+    RecyclerView rvNewIn;
+
+    @BindView(R.id.btn_one_col)
+    ImageView ivOneCol;
+
+    @BindView(R.id.btn_two_col)
+    ImageView ivTwoCol;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this,this);
 
-        final RecyclerView rvNewIn=findViewById(R.id.rv_items);
         mNewInAdapter=new NewInAdapter(this);
         rvNewIn.setAdapter(mNewInAdapter);
+
         rvNewIn.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false));
 
-        ImageView ivOneCol=findViewById(R.id.btn_one_col);
+
         ivOneCol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,8 +59,8 @@ public class MainActivity extends BaseActivity
             }
         });
 
-        ImageView ivTwoCol=findViewById(R.id.btn_two_col);
-        ivOneCol.setOnClickListener(new View.OnClickListener() {
+
+        ivTwoCol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rvNewIn.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));

@@ -9,7 +9,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NewProductsModel {
@@ -45,9 +47,11 @@ public class NewProductsModel {
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onSuccessGetNewProducts(SuccessGetNewProductsEvent event){
         for (NewProductsVO items : event.getNewProductsList()) {
-            mNewProductsMap.put(items.getProductId(), items);
+            mNewProductsMap.put(String.valueOf(items.getProductId()), items);
         }
     }
 
-
+    public List<NewProductsVO> getItemsList(){
+        return new ArrayList<>(mNewProductsMap.values());
+    }
 }
