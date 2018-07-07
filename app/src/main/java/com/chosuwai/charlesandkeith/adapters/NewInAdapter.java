@@ -28,8 +28,10 @@ public class NewInAdapter extends RecyclerView.Adapter<NewInViewHolder> {
     @Override
     public NewInViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.view_holder_new_in, parent, false);
-        return new NewInViewHolder(view, mItemDelegate);
+            View view = layoutInflater.inflate(R.layout.view_holder_new_in, parent, false);
+            return new NewInViewHolder(view, mItemDelegate);
+
+
     }
 
     @Override
@@ -45,6 +47,11 @@ public class NewInAdapter extends RecyclerView.Adapter<NewInViewHolder> {
 
     public void setNewProductsList(List<NewProductsVO> newProducts) {
         mNewProductsList = newProducts;
+        notifyDataSetChanged();
+    }
+
+    public void appendNewProductsList(List<NewProductsVO> itemsList){
+        mNewProductsList.addAll(itemsList);
         notifyDataSetChanged();
     }
 }

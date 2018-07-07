@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Charles and Keith</string>
+    <string name="empty_details_msg">No Data Available</string>
 </resources>

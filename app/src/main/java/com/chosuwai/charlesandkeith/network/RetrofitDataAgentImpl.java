@@ -3,6 +3,7 @@ package com.chosuwai.charlesandkeith.network;
 import android.text.GetChars;
 
 import com.chosuwai.charlesandkeith.events.ApiErrorEvent;
+import com.chosuwai.charlesandkeith.events.SuccessForceRefreshGetNewProductsEvent;
 import com.chosuwai.charlesandkeith.events.SuccessGetNewProductsEvent;
 import com.chosuwai.charlesandkeith.utils.NewProductsConstants;
 
@@ -46,7 +47,7 @@ public class RetrofitDataAgentImpl implements NewProductsDataAgent {
     }
 
     @Override
-    public void loadNewProductsList(int page, String accessToken) {
+    public void loadNewProductsList(int page, String accessToken, final boolean isForceRefresh) {
         Call<GetNewProductsResponse> loadNewProductsCall = mTheApi.loadNewProductsList(accessToken, page);
         loadNewProductsCall.enqueue(new Callback<GetNewProductsResponse>() {
             @Override
@@ -54,8 +55,14 @@ public class RetrofitDataAgentImpl implements NewProductsDataAgent {
                 GetNewProductsResponse newProductsResponse = response.body();
 
                 if (newProductsResponse != null && newProductsResponse.isResponseOk()) {
-                    SuccessGetNewProductsEvent event = new SuccessGetNewProductsEvent(newProductsResponse.getNewProducts());
-                    EventBus.getDefault().post(event);
+                    if(isForceRefresh){
+                        SuccessForceRefreshGetNewProductsEvent event=new SuccessForceRefreshGetNewProductsEvent(newProductsResponse.getNewProducts());
+                        EventBus.getDefault().post(event);
+                    }else{
+                        SuccessGetNewProductsEvent event = new SuccessGetNewProductsEvent(newProductsResponse.getNewProducts());
+                        EventBus.getDefault().post(event);
+                    }
+
                 } else {
                     if (newProductsResponse == null) {
                         ApiErrorEvent event = new ApiErrorEvent("Empty response in network call");

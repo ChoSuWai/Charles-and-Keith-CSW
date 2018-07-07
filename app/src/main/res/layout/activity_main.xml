@@ -1,69 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.BaseActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.AppBarLayout
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary">
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".activities.BaseActivity">
 
-        <RelativeLayout
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/primary">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-            <ImageView
-                android:id="@+id/btn_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_medium_2"
-                android:layout_marginTop="@dimen/margin_medium_2"
-                android:src="@drawable/ic_drag_handle_black_24dp" />
+                <ImageView
+                    android:id="@+id/btn_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:src="@drawable/ic_drag_handle_black_24dp" />
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/btn_menu"
-                android:layout_centerInParent="true"
-                android:text="NEW IN"
-                android:textColor="@color/primary_text" />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/btn_menu"
+                    android:layout_centerInParent="true"
+                    android:text="NEW IN"
+                    android:textColor="@color/primary_text" />
 
-            <ImageView
-                android:id="@+id/btn_one_col"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/btn_menu"
-                android:layout_marginStart="@dimen/margin_medium_3"
-                android:layout_marginTop="@dimen/margin_medium_2"
-                android:src="@drawable/ic_crop_square_black_24dp" />
+                <ImageView
+                    android:id="@+id/btn_one_col"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btn_menu"
+                    android:layout_marginStart="@dimen/margin_medium_3"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:src="@drawable/ic_crop_square_black_24dp" />
 
-            <ImageView
-                android:id="@+id/btn_two_col"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/btn_one_col"
-                android:layout_below="@id/btn_menu"
-                android:layout_marginStart="@dimen/margin_xlarge"
-                android:layout_toRightOf="@id/btn_one_col"
-                android:src="@drawable/ic_filter_none_black_24dp" />
+                <ImageView
+                    android:id="@+id/btn_two_col"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/btn_one_col"
+                    android:layout_below="@id/btn_menu"
+                    android:layout_marginStart="@dimen/margin_xlarge"
+                    android:layout_toRightOf="@id/btn_one_col"
+                    android:src="@drawable/ic_filter_none_black_24dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@id/btn_one_col"
-                android:layout_marginEnd="@dimen/margin_medium_3"
-                android:text="SORT BY"
-                android:textColor="@color/primary_dark" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/btn_one_col"
+                    android:layout_marginEnd="@dimen/margin_medium_3"
+                    android:text="SORT BY"
+                    android:textColor="@color/primary_dark" />
 
-        </RelativeLayout>
+            </RelativeLayout>
 
-    </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>
 
 
         <RelativeLayout
@@ -82,16 +88,54 @@
                 android:text="87 ITEMS"
                 android:textColor="@color/primary_text" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_items"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_num_of_items">
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_num_of_items">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
 
 
         </RelativeLayout>
 
+        <com.chosuwai.charlesandkeith.viewpods.EmptyViewPod xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/vp_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:visibility="gone"
+            >
 
-</android.support.design.widget.CoordinatorLayout>
+            <ImageView
+                android:id="@+id/iv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                tools:src="@drawable/ic_sorry" />
+
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_empty"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                tools:text="No data available"
+                android:textSize="@dimen/text_regular" />
+
+        </com.chosuwai.charlesandkeith.viewpods.EmptyViewPod>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
+</FrameLayout>
+

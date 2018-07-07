@@ -15,6 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NewInDetailsViewHolder extends RecyclerView.ViewHolder {
+
+
     public NewInDetailsViewHolder(View itemView) {
 
         super(itemView);
@@ -45,9 +47,9 @@ public class NewInDetailsViewHolder extends RecyclerView.ViewHolder {
         });
 
 
-    }*/
+    }
 
-/*
+
     public void setItemsData(NewProductsVO items) {
         tvItemName.setText(items.getProductTitle());
 
